@@ -13,6 +13,11 @@ namespace RikPronk.FileUpload
 {
     public class AzureBlobStorageUploader : FileUploaderBase, IFileUploader
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AzureBlobStorageUploader"/> class
+        /// </summary>
+        /// <param name="files">The file collection to upload</param>
+        /// <param name="container">The Azure Blob Container to upload to</param>
         public AzureBlobStorageUploader(UploadableFileCollection files, CloudBlobContainer container)
             : base(files)
         {
@@ -22,6 +27,12 @@ namespace RikPronk.FileUpload
             files.AssertAndResolveUniqueSaveNames(existingFileNames);
         }
 
+        /// <summary>
+        /// Gets a Blob Container reference. 
+        /// </summary>
+        /// <param name="containerName">Name of the container</param>
+        /// <param name="storageConnectionString">The Azure Blob Storage connection string</param>
+        /// <returns></returns>
         public static CloudBlobContainer GetBlobContainer(string containerName, string storageConnectionString)
         {
             CloudBlobContainer container;
@@ -43,6 +54,9 @@ namespace RikPronk.FileUpload
             return container;
         }
 
+        /// <summary>
+        /// Uploads the supplied files
+        /// </summary>
         public void Upload()
         {
             foreach (var file in _files)
@@ -55,6 +69,9 @@ namespace RikPronk.FileUpload
             }
         }
 
+        /// <summary>
+        /// Uploads the supplied files asynchronously
+        /// </summary>
         public async Task UploadAsync()
         {
             foreach(var file in _files)
@@ -102,8 +119,7 @@ namespace RikPronk.FileUpload
                 .Trim(new char[] { '-' })
                 .ToLower();
         }
-
-
+        
         private static CloudStorageAccount _storageAccount;
         private static CloudBlobClient _blobClient;
         private CloudBlobContainer _container;

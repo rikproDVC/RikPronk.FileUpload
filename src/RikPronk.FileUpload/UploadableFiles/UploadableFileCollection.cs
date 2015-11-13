@@ -28,6 +28,10 @@ namespace RikPronk.FileUpload.Core
             };
         }
 
+        /// <summary>
+        /// Sets the name resolver in case of a save name conflict. By default, the resolver will resolve duplicate file names upon addition as "{Filename} ({number of duplicates})", identical to Windows.
+        /// </summary>
+        /// <param name="value">The function to resolve the file name with</param>
         public void SetSaveNameResolver(Func<string, int, string> value)
         {
             _resolveSaveName = value;

@@ -46,11 +46,21 @@ namespace RikPronk.FileUpload.Core
             Extension = Path.GetExtension(httpFile.FileName);
         }
 
+        /// <summary>
+        /// Determines whether the file is smaller than the given size
+        /// </summary>
+        /// <param name="maxSize">The maximum size in bytes</param>
+        /// <returns></returns>
         public bool IsSize(int maxSize)
         {
             return ContentLength <= maxSize;
         }
 
+        /// <summary>
+        /// Determines whether he file is of one of the specified content types
+        /// </summary>
+        /// <param name="types">Array of content types to check against</param>
+        /// <returns>True if the content type matches. Returns false when supplied with an empty array</returns>
         public bool IsContentType(string[] types)
         {
             if (types.Any())
@@ -58,7 +68,9 @@ namespace RikPronk.FileUpload.Core
                 return types.All(mime => ContentType.Contains(mime));
             }
 
-            return true;
+            return false;
+        }
+
         /// <summary>
         /// Determines whether the file has one of the specified extensions.
         /// </summary>
@@ -74,6 +86,10 @@ namespace RikPronk.FileUpload.Core
             return false;
         }
 
+        /// <summary>
+        /// Gets the md5 hash of the file.
+        /// </summary>
+        /// <returns></returns>
         public byte[] GetMD5()
         {
             if (md5 == null)
@@ -85,6 +101,10 @@ namespace RikPronk.FileUpload.Core
             return md5;
         }
 
+        /// <summary>
+        /// Gets the sha1 hash of the file.
+        /// </summary>
+        /// <returns></returns>
         public byte[] GetSHA1()
         {
             if (sha1 == null)
