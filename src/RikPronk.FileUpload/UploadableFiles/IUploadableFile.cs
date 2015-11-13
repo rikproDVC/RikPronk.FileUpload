@@ -21,8 +21,13 @@ namespace RikPronk.FileUpload.Core
         /// </summary>
         int ContentLength { get; }
         /// <summary>
-        /// The contenttype of the uploaded file
+        /// The content type of the uploaded file
         /// </summary>
         string ContentType { get; }
+
+        /// <summary>
+        /// Gets the file extension
+        /// </summary>
+        string Extension { get; }
     }
 }

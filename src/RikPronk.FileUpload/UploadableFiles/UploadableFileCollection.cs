@@ -28,6 +28,10 @@ namespace RikPronk.FileUpload.Core
             };
         }
 
+        /// <summary>
+        /// Sets the name resolver in case of a save name conflict. By default, the resolver will resolve duplicate file names upon addition as "{Filename} ({number of duplicates})", identical to Windows.
+        /// </summary>
+        /// <param name="value">The function to resolve the file name with</param>
         public void SetSaveNameResolver(Func<string, int, string> value)
         {
             _resolveSaveName = value;
@@ -41,7 +45,7 @@ namespace RikPronk.FileUpload.Core
         /// <returns>
         /// A new UploadableFileCollection
         /// </returns>
-        public static UploadableFileCollection From<T>(IEnumerable<HttpPostedFileWrapper> files) where T: IUploadableFile
+        public static UploadableFileCollection From<T>(IEnumerable<HttpPostedFileBase> files) where T: IUploadableFile
         {
             return From<T>(files, delegate (string fileName)
             {
@@ -59,7 +63,7 @@ namespace RikPronk.FileUpload.Core
         /// <returns>
         /// A new UploadableFileCollection
         /// </returns>
-        public static UploadableFileCollection From<T>(IEnumerable<HttpPostedFileWrapper> files, Func<string, string> saveNameGenerator) where T : IUploadableFile
+        public static UploadableFileCollection From<T>(IEnumerable<HttpPostedFileBase> files, Func<string, string> saveNameGenerator) where T : IUploadableFile
         {
             var c = new UploadableFileCollection();
             foreach (var file in files)

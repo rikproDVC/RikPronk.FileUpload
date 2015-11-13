@@ -13,8 +13,25 @@ namespace RikPronk.FileUpload
         public int Height { get; }
         public int Width { get; }
 
-        public UploadableImage(HttpPostedFileWrapper httpFile)
-            : base(httpFile)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadableImage" /> class.
+        /// </summary>
+        /// <param name="httpFile">The file to upload</param>
+        /// <exception cref="NullReferenceException"></exception>
+        public UploadableImage(HttpPostedFileBase httpFile)
+            : this(httpFile, httpFile.FileName)
+        {
+            
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadableImage" /> class.
+        /// </summary>
+        /// <param name="httpFile">The file to upload</param>
+        /// <param name="saveName">Name the file will be saved as on disk</param>
+        /// <exception cref="NullReferenceException"></exception>
+        public UploadableImage(HttpPostedFileBase httpFile, string saveName)
+            : base(httpFile, saveName)
         {
             using (var img = Image.FromStream(FileStream))
             {
@@ -24,26 +41,53 @@ namespace RikPronk.FileUpload
             }
         }
 
+        /// <summary>
+        /// Determines whether the image size is smaller than the specified pixel size in either height or width
+        /// </summary>
+        /// <param name="size">The maximum size of the image in either height or width</param>
+        /// <returns></returns>
         public bool IsSmallerThan(int size)
         {
             return Width <= size && Height <= size;
         }
 
+        /// <summary>
+        /// Determines whether the image size is smaller than the specified pixel sizes
+        /// </summary>
+        /// <param name="height">The maximum height of the image</param>
+        /// <param name="width">The maximum width of the image</param>
+        /// <returns></returns>
         public bool IsSmallerThan(int height, int width)
         {
             return Width <= width && Height <= height;
         }
 
+        /// <summary>
+        /// Determines whether the image size is larger than the specified pixel size in either height or width
+        /// </summary>
+        /// <param name="size">The minimum size of the image in either height or width</param>
+        /// <returns></returns>
         public bool IsLargerThan(int size)
         {
             return Width >= size || Height >= size;
         }
 
+        /// <summary>
+        /// Determines whether the image size is larger than the specified pixel sizes
+        /// </summary>
+        /// <param name="height">The minimum height of the image</param>
+        /// <param name="width">The minimum width of the image</param>
+        /// <returns></returns>
         public bool IsLargerThan(int height, int width)
         {
             return Width >= width || Height >= height;
         }
 
+        /// <summary>
+        /// Scales the image to the specified size in either width or height, depending on which is closer.
+        /// </summary>
+        /// <param name="size">The size to scale towards</param>
+        /// <returns></returns>
         public Stream ScaleImage(int size)
         {
             var rawStream = FileStream;
@@ -86,6 +130,12 @@ namespace RikPronk.FileUpload
             }
         }
 
+        /// <summary>
+        /// Scales the image to either the specified width or height, depending on which is closer.
+        /// </summary>
+        /// <param name="height">The height to scale towards</param>
+        /// <param name="width">The width to scale towards</param>
+        /// <returns></returns>
         public Stream ScaleImage(int height, int width)
         {
             var rawStream = FileStream;
