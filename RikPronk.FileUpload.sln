@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RikPronk.FileUpload", "src\RikPronk.FileUpload\RikPronk.FileUpload.csproj", "{36C6D16A-E9D0-4087-BAAB-2A307B3B0E8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RikPronk.FileUpload.Sample", "RikPronk.FileUpload.Sample\RikPronk.FileUpload.Sample.csproj", "{EA04781D-C2FA-4CB9-9D1C-AC2A0933385E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RikPronk.FileUpload.Sample", "src\RikPronk.FileUpload.Sample\RikPronk.FileUpload.Sample.csproj", "{EA04781D-C2FA-4CB9-9D1C-AC2A0933385E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,5 +34,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{36C6D16A-E9D0-4087-BAAB-2A307B3B0E8E} = {617114E7-7024-417D-8766-78A0A7E226AA}
+		{EA04781D-C2FA-4CB9-9D1C-AC2A0933385E} = {617114E7-7024-417D-8766-78A0A7E226AA}
 	EndGlobalSection
 EndGlobal
