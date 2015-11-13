@@ -15,6 +15,7 @@ namespace RikPronk.FileUpload.Core
         public string ContentType { get; private set; }
         
         public UploadableFile(HttpPostedFileWrapper httpFile)
+        public string Extension { get; private set; }
         {
             if (httpFile == null)
             {
@@ -38,6 +39,7 @@ namespace RikPronk.FileUpload.Core
             SaveName = saveName;
             ContentLength = httpFile.ContentLength;
             ContentType = httpFile.ContentType;
+            Extension = Path.GetExtension(httpFile.FileName);
         }
 
         public bool IsSize(int maxSize)
@@ -53,6 +55,19 @@ namespace RikPronk.FileUpload.Core
             }
 
             return true;
+        /// <summary>
+        /// Determines whether the file has one of the specified extensions.
+        /// </summary>
+        /// <param name="extensions">Array of extensions (including period) to check against</param>
+        /// <returns>True if the extension matches. Returns false when supplied with an empty array</returns>
+        public bool HasExtension(string[] extensions)
+        {
+            if (extensions.Any())
+            {
+                return extensions.All(ext => Extension == ext);
+            }
+
+            return false;
         }
 
         public byte[] GetMD5()
