@@ -13,8 +13,25 @@ namespace RikPronk.FileUpload
         public int Height { get; }
         public int Width { get; }
 
-        public UploadableImage(HttpPostedFileWrapper httpFile)
-            : base(httpFile)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadableImage" /> class.
+        /// </summary>
+        /// <param name="httpFile">The file to upload</param>
+        /// <exception cref="NullReferenceException"></exception>
+        public UploadableImage(HttpPostedFileBase httpFile)
+            : this(httpFile, httpFile.FileName)
+        {
+            
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadableImage" /> class.
+        /// </summary>
+        /// <param name="httpFile">The file to upload</param>
+        /// <param name="saveName">Name the file will be saved as on disk</param>
+        /// <exception cref="NullReferenceException"></exception>
+        public UploadableImage(HttpPostedFileBase httpFile, string saveName)
+            : base(httpFile, saveName)
         {
             using (var img = Image.FromStream(FileStream))
             {

@@ -13,22 +13,26 @@ namespace RikPronk.FileUpload.Core
         public string SaveName { get; set; }
         public int ContentLength { get; private set; }
         public string ContentType { get; private set; }
-        
-        public UploadableFile(HttpPostedFileWrapper httpFile)
         public string Extension { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadableFile"/> class.
+        /// </summary>
+        /// <param name="httpFile">The file to upload</param>
+        /// <exception cref="NullReferenceException"></exception>
+        public UploadableFile(HttpPostedFileBase httpFile)
+            : this(httpFile, httpFile.FileName)
         {
-            if (httpFile == null)
-            {
-                throw new NullReferenceException();
-            }
-            FileStream = httpFile.InputStream;
-            FileName = httpFile.FileName;
-            SaveName = httpFile.FileName;
-            ContentLength = httpFile.ContentLength;
-            ContentType = httpFile.ContentType;
+
         }
-        
-        public UploadableFile(HttpPostedFileWrapper httpFile, string saveName)
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadableFile" /> class.
+        /// </summary>
+        /// <param name="httpFile">The file to upload</param>
+        /// <param name="saveName">Name the file will be saved as on disk</param>
+        /// <exception cref="NullReferenceException"></exception>
+        public UploadableFile(HttpPostedFileBase httpFile, string saveName)
         {
             if (httpFile == null)
             {

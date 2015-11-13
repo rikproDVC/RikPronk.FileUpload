@@ -41,7 +41,7 @@ namespace RikPronk.FileUpload.Core
         /// <returns>
         /// A new UploadableFileCollection
         /// </returns>
-        public static UploadableFileCollection From<T>(IEnumerable<HttpPostedFileWrapper> files) where T: IUploadableFile
+        public static UploadableFileCollection From<T>(IEnumerable<HttpPostedFileBase> files) where T: IUploadableFile
         {
             return From<T>(files, delegate (string fileName)
             {
@@ -59,7 +59,7 @@ namespace RikPronk.FileUpload.Core
         /// <returns>
         /// A new UploadableFileCollection
         /// </returns>
-        public static UploadableFileCollection From<T>(IEnumerable<HttpPostedFileWrapper> files, Func<string, string> saveNameGenerator) where T : IUploadableFile
+        public static UploadableFileCollection From<T>(IEnumerable<HttpPostedFileBase> files, Func<string, string> saveNameGenerator) where T : IUploadableFile
         {
             var c = new UploadableFileCollection();
             foreach (var file in files)
