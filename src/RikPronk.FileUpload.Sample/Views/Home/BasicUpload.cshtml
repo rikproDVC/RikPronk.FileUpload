@@ -1,0 +1,11 @@
+﻿@model BasicViewModel
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    @Html.TextBoxFor(m => m.File, new { type = "file" })
+    <input type="submit" />
+</form>
