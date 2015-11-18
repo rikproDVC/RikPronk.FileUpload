@@ -46,9 +46,9 @@ namespace RikPronk.FileUpload
                         PublicAccess = BlobContainerPublicAccessType.Blob
                     });
             }
-            catch(Exception e)
+            catch(StorageException e)
             {
-                throw e;
+                throw new StorageException(e.RequestInformation, e.RequestInformation.HttpStatusMessage, e.InnerException);
             }
             
             return container;
