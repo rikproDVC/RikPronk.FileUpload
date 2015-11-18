@@ -75,13 +75,13 @@
   <ItemGroup>
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="UploadableFiles\UploadableFileCollection.cs" />
-    <Compile Include="UploadableFiles\IUploadableFile.cs" />
+    <Compile Include="Interfaces\IUploadableFile.cs" />
     <Compile Include="Uploaders\AzureBlobStorageUploader.cs" />
     <Compile Include="Uploaders\FileUploaderBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UploadableFiles\UploadableFile.cs" />
     <Compile Include="UploadableFiles\UploadableImage.cs" />
-    <Compile Include="Uploaders\IFileUploader.cs" />
+    <Compile Include="Interfaces\IFileUploader.cs" />
     <Compile Include="ValidationAttributes.cs" />
   </ItemGroup>
   <ItemGroup>
