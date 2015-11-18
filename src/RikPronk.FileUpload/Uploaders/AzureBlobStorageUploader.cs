@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RikPronk.FileUpload
 {
-    public class AzureBlobStorageUploader : FileUploaderBase, IFileUploader
+    public class AzureBlobStorageUploader : FileUploaderBase, IAsyncFileUploader
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AzureBlobStorageUploader"/> class
